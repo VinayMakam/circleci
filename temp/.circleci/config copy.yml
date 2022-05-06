@@ -1,0 +1,30 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.2
+  email: cinotify/email@1.2.1
+
+workflows:
+  demo:
+    jobs:
+      - build-and-test
+      - email/send:
+          body: 'Configure this notification at https://www.cinotify.cc/'
+          subject: CircleCI job started
+          to: vinay.makam@gmail.com, vinay.makamanjaneya@quest-global.com 
+    
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: python -m pytest
+      # - email/send:
+      #     body: 'CircleCI demo'
+      #     subject: CircleCI job started
+      #     to: vinay.makamanjaneya@gmail.com
