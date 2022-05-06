@@ -11,7 +11,7 @@ workflows:
       - email/send:
           body: 'Configure this notification at https://www.cinotify.cc/'
           subject: CircleCI job started
-          to: vinay.makam@gmail.com 
+          to: vinay.makam@gmail.com;vinay.makamanjaneya@quest-global.com 
     
 jobs:
   build-and-test:
