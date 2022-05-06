@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Run tests
           command: python -m pytest
-      - email/send:
-          body: 'CircleCI demo'
-          subject: CircleCI job started
-          to: vinay.makamanjaneya@gmail.com
+      # - email/send:
+      #     body: 'CircleCI demo'
+      #     subject: CircleCI job started
+      #     to: vinay.makamanjaneya@gmail.com
