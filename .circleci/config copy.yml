@@ -27,11 +27,7 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}      
-      - run:
-          name: Run Lint
-          command: |
-            pylint --disable=R,C,W1203,W1202 app.py          
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}         
       - run:
           name: Run unit tests
           command: |
