@@ -1,8 +1,13 @@
 version: 2.1
+
+orbs:
+  python: circleci/python@1.2
+
 jobs:
   run_tests:
+    parallelism: 2
     docker:
-      - image: circleci/python:3.8.9
+      - image: cimg/python:3.8
     steps:
       - checkout
       - run:
