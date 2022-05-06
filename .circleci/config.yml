@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Run a linter
           command: |
-            pylint --disable=R,C,W1203,W1202 app.py            
+            pylint --disable=R,C,W1203,W1202,W0611 app.py            
       - run:
           name: Run unit tests
           command: |
