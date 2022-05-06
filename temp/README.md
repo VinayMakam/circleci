@@ -1,2 +1,0 @@
-# circleci
-circleci-demo
