@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.2
-  email: cinotify/email@1.2.3
+  email:  notify/email@1.2.3
 
 workflows:
   demo:
