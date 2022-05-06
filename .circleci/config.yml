@@ -10,11 +10,15 @@ jobs:
       - image: cimg/python:3.8
     steps:
       - checkout
-      - run:
-          name: Install Python dependencies
-          command: |
-            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
-            pip install --user -r requirements.txt
+      - python/install-packages:
+          pkg-manager: pip      
+      # - restore_cache:
+      #     key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}      
+      # - run:
+      #     name: Install Python dependencies
+      #     command: |
+      #       echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
+      #       pip install --user -r requirements.txt
       - run:
           name: Run unit tests
           command: |
