@@ -22,7 +22,7 @@ jobs:
       - image: 'circleci/buildpack-deps:stretch'
     environment:
       IMAGE_NAME: vinaymakam/circleci-demo
-
+      SNYK_TOKEN: 43c901dd-d928-44ad-848e-44b74d5b83d0
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
@@ -58,7 +58,7 @@ jobs:
             docker build -t vinaymakam/circleci-demo:latest .
       - snyk/scan:
           docker-image-name: '$IMAGE_NAME:latest'
-          token-variable: 43c901dd-d928-44ad-848e-44b74d5b83d0
+          token-variable: SNYK_TOKEN
       - run:
           name: Push the Docker image to Registry
           command: |
