@@ -58,6 +58,7 @@ jobs:
             docker build -t vinaymakam/circleci-demo:latest .
       - snyk/scan:
           docker-image-name: '$IMAGE_NAME:latest'
+          token-variable: 43c901dd-d928-44ad-848e-44b74d5b83d0
       - run:
           name: Push the Docker image to Registry
           command: |
