@@ -61,6 +61,7 @@ jobs:
           command: |
             docker login -u$DOCKERHUB_USER -p$DOCKERHUB_PASSWORD docker.io
             docker push vinaymakam/circleci-demo:latest
+            
 workflows:
   # This is the name of the workflow, feel free to change it to better match your workflow.
   build_test:
