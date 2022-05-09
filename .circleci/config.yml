@@ -19,6 +19,10 @@ jobs:
 
     docker:
       - image: cimg/python:3.8
+      - image: 'circleci/buildpack-deps:stretch'
+    environment:
+      IMAGE_NAME: vinaymakam/circleci-demo
+
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
@@ -52,7 +56,8 @@ jobs:
           name: Build the Docker image
           command: |
             docker build -t vinaymakam/circleci-demo:latest .
-      - snyk/scan: vinaymakam/circleci-demo:latest
+      - snyk/scan:
+          docker-image-name: '$IMAGE_NAME:latest'
       - run:
           name: Push the Docker image to Registry
           command: |
