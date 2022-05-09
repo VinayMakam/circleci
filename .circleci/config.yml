@@ -52,7 +52,6 @@ jobs:
           command: |
             docker build -t vinaymakam/circleci-demo:latest .
             docker login -u$DOCKERHUB_USER -p$DOCKERHUB_PASSWORD docker.io
-            #echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USER" --password-stdin
             docker push vinaymakam/circleci-demo:latest
 
 workflows:
