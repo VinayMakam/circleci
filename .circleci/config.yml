@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Scan the Dockerfile
           command: |
-            
+            - snyk/scan: vinaymakam/circleci-demo:latest
       - run:
           name: Push the Docker image to Registry
           command: |
