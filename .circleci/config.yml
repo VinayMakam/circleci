@@ -5,10 +5,11 @@ version: 2.1
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
 orbs:
   python: circleci/python@1.2
+  snyk:   snyk/snyk@1.1.2
 
 jobs:
   # This is the name of the job, feel free to change it to better match what you're trying to do! 
-  run_tests:
+  continuous_integration:
     # These next lines defines a docker executors: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from dockerhub or use one of the convenience images from CircleCI's Developer Hub
     # A list of available CircleCI docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
@@ -48,16 +49,22 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - run:
-          name: Build and push Docker image
+          name: Build the Docker image
           command: |
             docker build -t vinaymakam/circleci-demo:latest .
+      - run:
+          name: Scan the Dockerfile
+          command: |
+            
+      - run:
+          name: Push the Docker image to Registry
+          command: |
             docker login -u$DOCKERHUB_USER -p$DOCKERHUB_PASSWORD docker.io
             docker push vinaymakam/circleci-demo:latest
-
 workflows:
   # This is the name of the workflow, feel free to change it to better match your workflow.
   build_test:
     # Inside the workflow, you define the jobs you want to run.
     # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
     jobs:
-      - run_tests
+      - continuous_integration
