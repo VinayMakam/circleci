@@ -8,7 +8,7 @@ orbs:
   snyk:   snyk/snyk@1.1.2
 
 jobs:
-  # This is the name of the job, feel free to change it to better match what you're trying to do! 
+  # This is the name of the job, feel free to change it to better match what you're trying to do!
   continuous_integration:
     # These next lines defines a docker executors: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from dockerhub or use one of the convenience images from CircleCI's Developer Hub
@@ -52,16 +52,13 @@ jobs:
           name: Build the Docker image
           command: |
             docker build -t vinaymakam/circleci-demo:latest .
-      - run:
-          name: Scan the Dockerfile
-          command: |
-            - snyk/scan: vinaymakam/circleci-demo:latest
+      - snyk/scan: vinaymakam/circleci-demo:latest
       - run:
           name: Push the Docker image to Registry
           command: |
             docker login -u$DOCKERHUB_USER -p$DOCKERHUB_PASSWORD docker.io
             docker push vinaymakam/circleci-demo:latest
-            
+
 workflows:
   # This is the name of the workflow, feel free to change it to better match your workflow.
   build_test:
