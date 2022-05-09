@@ -24,6 +24,11 @@ jobs:
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
     steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip      
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }} 
       - run:
           name: Run a linter
           command: |
