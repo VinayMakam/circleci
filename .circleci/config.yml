@@ -52,7 +52,10 @@ jobs:
           name: Build the Docker image
           command: |
             docker build -t vinaymakam/circleci-demo:latest .
-      - snyk/scan: vinaymakam/circleci-demo:latest
+      - run:
+          name: scan the Docker
+          command: |
+            snyk/scan: vinaymakam/circleci-demo:latest
       - run:
           name: Push the Docker image to Registry
           command: |
