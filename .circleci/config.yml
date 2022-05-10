@@ -5,10 +5,12 @@ version: 2.1
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
 orbs:
   python: circleci/python@1.2
-  snyk:   snyk/snyk@1.1.2
+  email:  cinotify/email@1.2.0
+  # snyk:   snyk/snyk@1.1.2
 
 jobs:
   # This is the name of the job, feel free to change it to better match what you're trying to do!
+
   continuous_integration:
     # These next lines defines a docker executors: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from dockerhub or use one of the convenience images from CircleCI's Developer Hub
@@ -17,12 +19,10 @@ jobs:
     # Change the version below to your required version of python
     parallelism: 2
 
-    docker:
-      - image: cimg/python:3.8
-      - image: 'circleci/buildpack-deps:stretch'
-    environment:
-      IMAGE_NAME: vinaymakam/circleci-demo
-      SNYK_TOKEN: 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
+    docker:        - email/send:
+            to: 'example@example.com'
+            subject: 'CircleCI job started'
+            body: 'Configure this notification at https://www.cinotify.cc/'C8uVYKvx2ZbwxG
       
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
@@ -72,4 +72,12 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
     jobs:
+      - email/send:
+            to: 'vinay.makamanjaneya@quest-global.com'
+            subject: 'CircleCI job started.'
+            body: 'Configure this notification at https://www.cinotify.cc/'
       - continuous_integration
+      - email/send:
+            to: 'vinay.makamanjaneya@quest-global.com'
+            subject: 'CircleCI job completed.'
+            body: 'Configure this notification at https://www.cinotify.cc/'      
