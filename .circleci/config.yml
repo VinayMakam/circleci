@@ -57,9 +57,9 @@ jobs:
           name: Build the Docker image
           command: |
             docker build -t vinaymakam/circleci-demo:latest .
-      - snyk/scan:
-          docker-image-name: '$IMAGE_NAME:latest'
-          token-variable: SNYK_TOKEN
+      # - snyk/scan:
+      #     docker-image-name: '$IMAGE_NAME:latest'
+      #     token-variable: SNYK_TOKEN
       - run:
           name: Push the Docker image to Registry
           command: |
