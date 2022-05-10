@@ -19,11 +19,7 @@ jobs:
     # Change the version below to your required version of python
     parallelism: 2
 
-    docker:        - email/send:
-            to: 'example@example.com'
-            subject: 'CircleCI job started'
-            body: 'Configure this notification at https://www.cinotify.cc/'C8uVYKvx2ZbwxG
-      
+    docker:        
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
@@ -74,7 +70,7 @@ workflows:
     jobs:
       - email/send:
             to: 'vinay.makamanjaneya@quest-global.com'
-            subject: 'CircleCI job started.'
+            subject: 'CircleCI job started'
             body: 'Configure this notification at https://www.cinotify.cc/'
       - continuous_integration
       - email/send:
