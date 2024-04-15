@@ -7,3 +7,4 @@ beautifulsoup4==4.9.3
 pytest
 pytest-html
 pylint==2.13.8
+idna>=3.7 # not directly required, pinned by Snyk to avoid a vulnerability
